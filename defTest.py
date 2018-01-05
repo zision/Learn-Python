@@ -64,5 +64,5 @@ def da_yin0(a, *b, **c):
 
 da_yin0(1, 2, 3)
 da_yin0(1, 2, 3, 4, 5, 6, 7, haha=80)
-da_yin0(1, 2, haha=80, 4, 5, hehe=70)
+# da_yin0(1, 2, haha=80, 4, 5, hehe=70)
 # 可变参数需要写在最后，顺序不能错，否则报错

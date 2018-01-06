@@ -81,8 +81,16 @@ for i in range(0, 2):
 # 但是一般情况不知道会有多少行
 f.close()
 
-
+# 使用循环
+print('# 使用循环')
 f = open('fileTest2.txt')
 for i in f.readlines():
     print(i)
+f.close()
+
+# 用列表生成式
+print('# 使用列表生成式')
+f = open('fileTest2.txt')
+g = [print(i) for i in f.readlines()]
+[print(i) for i in f.readlines()]  # 这样会输出None，因为print()函数作为列表元素没有返回值
 f.close()

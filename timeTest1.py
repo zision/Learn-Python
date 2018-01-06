@@ -18,9 +18,31 @@ print(time.strptime('2018-01-06 22:46:24', '%Y-%m-%d %X'))
 # 逆向操作
 
 
-time.sleep(3)  # 先休息3秒
+time.sleep(1)  # 先休息1秒
 for i in range(1, 10):
     print(i)
-    time.sleep(1)
+    time.sleep(0.1)
     # 每隔一秒打印一次
 
+
+# 定义一个计时用函数
+def usetime(f):
+    def fn(*args, **kw):
+        start = time.clock()
+        r = f(*args, **kw)
+        end = time.clock()
+        print('call', f.__name__+'() in %ds' % (end-start))
+        return r
+    return fn
+
+
+@usetime
+def factorial(n):
+    m = 1
+    for i in range(1, n+1):
+        m = m*i
+    return m
+
+
+print(factorial(10))
+print(factorial(1000))

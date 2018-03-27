@@ -1,7 +1,5 @@
 # coding=utf-8
-
-
-# 牛课网专用空格分割输入, 适用于Python2.7
+# 牛课网空格分割标准输入, Python2.7
 import sys
 try:
     while True:
@@ -14,14 +12,12 @@ except:
     pass
 
 
-# 快速排序
-try:
-    n = len(int_l)
-    
 
 # 标准输出
-try:
-    print(str_l)
-    print(int_l)
-except:
-    pass
+if __name__ == '__main__':
+    try:
+        print(str_l)
+        print(int_l)
+    except:
+        pass
+

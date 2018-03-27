@@ -7,6 +7,9 @@ from functools import wraps
 import sys
 
 
+sys.setrecursionlimit(1000000)
+
+
 # 计时装饰器
 def fn_timer(fn):
     @wraps(fn)
@@ -53,15 +56,35 @@ def bubble_sort(array):
 
 
 # 快速排序
-def quick_sort(array):
-    sys.setrecursionlimit(10000)
+def quick_sort1(array):
     if len(array) < 2:
         return array
     else:
         pivot = array[0]
         small = [i for i in array[1:] if i < pivot]
         big = [i for i in array[1:] if i > pivot]
-    return quick_sort(small) + [pivot] + quick_sort(big)
+    return quick_sort1(small) + [pivot] + quick_sort1(big)
+
+
+# 第二种快排写法测试
+def quick_sort2(array):
+    def recursive(begin, end):
+        if begin > end:
+            return
+        l, r = begin, end
+        pivot = array[l]
+        while l < r:
+            while l < r and array[r] > pivot:
+                r -= 1
+            while l < r and array[l] <= pivot:
+                l += 1
+            array[l], array[r] = array[r], array[l]
+        array[l], array[begin] = pivot, array[l]
+        recursive(begin, l - 1)
+        recursive(r + 1, end)
+
+    recursive(0, len(array) - 1)
+    return array
 
 
 # 输出测试
@@ -69,9 +92,11 @@ if __name__ == '__main__':
     list1 = get_random(int(input('输入随机生成列表长度:')))
     print('原列表为:%s\n' % list1)
     t0 = time.clock()
-    print('冒泡排序后:%s\n冒泡排序耗时:%s秒\n' % (bubble_sort(list1), time.clock()-t0))
+    print('冒泡排序后:%s\n冒泡排序耗时: %s秒\n' % (bubble_sort(list1), time.clock()-t0))
     t0 = time.clock()
-    print('插入排序后:%s\n插入排序耗时:%s秒\n' % (insert_sort(list1), time.clock()-t0))
+    print('插入排序后:%s\n插入排序耗时: %s秒\n' % (insert_sort(list1), time.clock()-t0))
     t0 = time.clock()
-    print('快速排序后:%s\n快速排序耗时:%s秒\n' % (quick_sort(list1), time.clock()-t0))
+    print('快速排序1后:%s\n快速排序1耗时: %s秒\n' % (quick_sort1(list1), time.clock()-t0))
+    t0 = time.clock()
+    print('快速排序2后:%s\n快速排序2耗时: %s秒\n' % (quick_sort2(list1), time.clock()-t0))
 

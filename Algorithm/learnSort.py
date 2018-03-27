@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Python2.7
+# 适用于Python2.7
 # 几种排序算法的Python实现
 import random
 import time
@@ -10,9 +10,9 @@ from functools import wraps
 def fn_timer(function):
     @wraps(function)
     def function_timer(*args, **kwargs):
-        t0 = time.time()
+        t0 = time.clock()
         result = function(*args, **kwargs)
-        t1 = time.time()
+        t1 = time.clock()
         print ("函数'%s'本次运行耗时: %s 秒" %
                (function.func_name, str(t1-t0))
                )

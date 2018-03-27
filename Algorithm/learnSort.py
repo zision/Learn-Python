@@ -4,6 +4,7 @@
 import random
 import time
 from functools import wraps
+import sys
 
 
 # 计时装饰器
@@ -25,7 +26,7 @@ def get_random(num):
     a = []
     i = 0
     while i < num:
-        a.append(random.randint(0, 100))
+        a.append(random.randint(0, 10000))
         i += 1
     return a
 
@@ -51,10 +52,26 @@ def bubble_sort(array):
     return array
 
 
+# 快速排序
+def quick_sort(array):
+    sys.setrecursionlimit(10000)
+    if len(array) < 2:
+        return array
+    else:
+        pivot = array[0]
+        small = [i for i in array[1:] if i < pivot]
+        big = [i for i in array[1:] if i > pivot]
+    return quick_sort(small) + [pivot] + quick_sort(big)
+
+
 # 输出测试
 if __name__ == '__main__':
     list1 = get_random(int(input('输入随机生成列表长度:')))
-    print('原列表为:%s' % list1)
-    print('冒泡排序后:%s' % bubble_sort(list1))
-    print('直接插入排序后:%s' % insert_sort(list1))
+    print('原列表为:%s\n' % list1)
+    t0 = time.clock()
+    print('冒泡排序后:%s\n冒泡排序耗时:%s秒\n' % (bubble_sort(list1), time.clock()-t0))
+    t0 = time.clock()
+    print('插入排序后:%s\n插入排序耗时:%s秒\n' % (insert_sort(list1), time.clock()-t0))
+    t0 = time.clock()
+    print('快速排序后:%s\n快速排序耗时:%s秒\n' % (quick_sort(list1), time.clock()-t0))
 

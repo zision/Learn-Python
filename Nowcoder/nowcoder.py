@@ -12,7 +12,6 @@ except:
     pass
 
 
-
 # 标准输出
 if __name__ == '__main__':
     try:

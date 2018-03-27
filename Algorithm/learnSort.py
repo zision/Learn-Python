@@ -55,7 +55,7 @@ def bubble_sort(array):
     return array
 
 
-# 快速排序
+# 第一种快速排序,有bug,过长会丢元素
 def quick_sort1(array):
     if len(array) < 2:
         return array
@@ -66,7 +66,7 @@ def quick_sort1(array):
     return quick_sort1(small) + [pivot] + quick_sort1(big)
 
 
-# 第二种快排写法测试
+# 第二种快速排序写法,更高效
 def quick_sort2(array):
     def recursive(begin, end):
         if begin > end:

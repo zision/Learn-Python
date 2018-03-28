@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # 适用于Python2.7
 # 几种排序算法的Python实现
+import copy
 import random
 import time
 from functools import wraps
@@ -87,19 +88,35 @@ def quick_sort2(array):
     return array
 
 
+'''
+# 还没想好怎么写
+def quick_sort3(array):
+    left = 0
+    right = len(array) - 1
+    if left >= right:
+        return array
+    else:
+        key = array[0]
+        while left < right and array[right] >= key:
+            right -= 1
+        while left < right and array[left] < key:
+            left += 1
+        array[left], array[right] = array[right], array[left]
+        return array
+'''
+
 # 输出测试
 if __name__ == '__main__':
     list1 = get_random(int(input('输入随机生成列表长度:')))
     print('原列表为:%s\n' % list1)
     t0 = time.clock()
-    print('Py自带排序后:%s\nPy自带排序耗时: %s秒\n' % (sorted(list1), time.clock()-t0))
+    print('Py自带排序后:%s\nPy自带排序耗时: %s秒\n' % (sorted(copy.copy(list1)), time.clock()-t0))
     t0 = time.clock()
-    print('冒泡排序后:%s\n冒泡排序耗时: %s秒\n' % (bubble_sort(list1), time.clock()-t0))
+    print('冒泡排序后:%s\n冒泡排序耗时: %s秒\n' % (bubble_sort(copy.copy(list1)), time.clock()-t0))
     t0 = time.clock()
-    print('插入排序后:%s\n插入排序耗时: %s秒\n' % (insert_sort(list1), time.clock()-t0))
+    print('插入排序后:%s\n插入排序耗时: %s秒\n' % (insert_sort(copy.copy(list1)), time.clock()-t0))
     t0 = time.clock()
-    print('快速排序1后:%s\n快速排序1耗时: %s秒\n' % (quick_sort1(list1), time.clock()-t0))
+    print('快速排序1后:%s\n快速排序1耗时: %s秒\n' % (quick_sort1(copy.copy(list1)), time.clock()-t0))
     t0 = time.clock()
-    print('快速排序2后:%s\n快速排序2耗时: %s秒\n' % (quick_sort2(list1), time.clock()-t0))
-
-
+    print('快速排序2后:%s\n快速排序2耗时: %s秒\n' % (quick_sort2(copy.copy(list1)), time.clock()-t0))
+    print(list1)

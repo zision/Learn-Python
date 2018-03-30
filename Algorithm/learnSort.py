@@ -11,7 +11,7 @@ import sys
 sys.setrecursionlimit(100000)
 
 
-# 计时装饰器
+# 计时装饰器,不适用于递归函数
 def fn_timer(fn):
     @wraps(fn)
     def function_timer(*args, **kwargs):
@@ -35,7 +35,7 @@ def get_random(num):
     return a
 
 
-# 直接插入排序
+# 插入排序
 @fn_timer
 def insert_sort(array):
     for i in range(len(array)):
@@ -56,7 +56,7 @@ def bubble_sort(array):
     return array
 
 
-# 第一种快速排序
+# 第一种快速排序写法
 def quick_sort1(array):
     if len(array) < 2:
         return array
@@ -67,7 +67,7 @@ def quick_sort1(array):
     return quick_sort1(small) + [pivot] + quick_sort1(big)
 
 
-# 第二种快速排序写法,更高效
+# 第二种快速排序写法
 def quick_sort2(array):
     def recursive(begin, end):
         if begin > end:
@@ -89,7 +89,7 @@ def quick_sort2(array):
 
 
 '''
-# 还没想好怎么写
+# 对简化第二种快排写法的思考，还没想好怎么写
 def quick_sort3(array):
     left = 0
     right = len(array) - 1
